@@ -1,0 +1,53 @@
+header:
+  version: 14
+
+distro: poky
+
+defaults:
+  repos:
+    branch: walnascar
+
+repos:
+  meta-arm:
+    layers:
+      meta-arm:
+      meta-arm-bsp:
+      meta-arm-toolchain:
+
+  poky:
+    url: https://git.yoctoproject.org/git/poky
+    commit: ee0d8d8a61d8e22a3dd00c32cde58ee6e8ec458f
+    layers:
+      meta:
+      meta-poky:
+
+  meta-openembedded:
+    url: https://git.openembedded.org/meta-openembedded
+    commit: 2169c9afcc0945045bea49f58011080942d4ddb4
+    layers:
+      meta-oe:
+      meta-python:
+      meta-perl:
+
+  meta-secure-core:
+    url: https://github.com/wind-river/meta-secure-core.git
+    commit: 423bc85b050594cc42fe3f2e0d0229960e70b94e
+    layers:
+      meta-secure-core-common:
+      meta-signing-key:
+      meta-efi-secure-boot:
+
+local_conf_header:
+  base: |
+    CONF_VERSION = "2"
+
+  setup: |
+    PACKAGE_CLASSES = "package_ipk"
+    BB_NUMBER_THREADS ?= "16"
+    PARALLEL_MAKE ?= "-j16"
+    PACKAGECONFIG:append:pn-perf = " coresight"
+
+machine: unset
+
+target:
+  - corstone1000-flash-firmware-image
