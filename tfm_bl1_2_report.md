@@ -19,21 +19,21 @@ The following Mermaid flowchart illustrates the main execution path of BL1_2:
 
 ```mermaid
 graph TD
-    A[Start] --> B{boot_platform_init()};
-    B --> C{boot_platform_post_init()};
-    C --> D{Loop: Try image 0, then image 1};
-    D --> E{validate_image()};
-    E --> F{copy_and_decrypt_image()};
-    F --> G{validate_image_at_addr()};
-    G --> H{is_image_signature_valid()};
-    H -- Success --> I{is_image_security_counter_valid()};
-    H -- Failure --> J{Try next image or recovery};
-    I -- Success --> K{collect_boot_measurement()};
+    A[Start] --> B{"boot_platform_init()"};
+    B --> C{"boot_platform_post_init()"};
+    C --> D{"Loop: Try image 0, then image 1"};
+    D --> E{"validate_image()"};
+    E --> F{"copy_and_decrypt_image()"};
+    F --> G{"validate_image_at_addr()"};
+    G --> H{"is_image_signature_valid()"};
+    H -- Success --> I{"is_image_security_counter_valid()"};
+    H -- Failure --> J{"Try next image or recovery"};
+    I -- Success --> K{"collect_boot_measurement()"};
     I -- Failure --> J;
-    J -- Both images failed --> L{boot_initiate_recovery_mode()};
+    J -- Both images failed --> L{"boot_initiate_recovery_mode()"};
     L -- Recovery failed --> M[PANIC];
-    K --> N{boot_platform_quit()};
-    N --> O[Jump to BL2];
+    K --> N{"boot_platform_quit()"};
+    N --> O["Jump to BL2"];
 ```
 
 ## 3. Detailed Code Trace and Key Function Analysis
