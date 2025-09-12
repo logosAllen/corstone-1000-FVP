@@ -1,0 +1,24 @@
+# Yocto/Bitbake build artifacts
+build/
+downloads/
+sstate-cache/
+tmp/
+*.o
+*.a
+*.so
+*.bin
+*.img
+*.elf
+*.axf
+
+# IDE and editor specific files
+.vscode/
+*.swp
+*~
+.DS_Store
+
+# Linux kernel build artifacts
+vmlinux
+System.map
+*.ko
+*.dtb
