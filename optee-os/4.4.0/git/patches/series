@@ -1,0 +1,3 @@
+0003-optee-enable-clang-support.patch -p1
+0001-Handle-logging-syscall.patch -p1
+0002-plat-corstone1000-increase-CFG_TZDRAM_SIZE.patch -p1
